@@ -26,9 +26,15 @@ public class LiftOff : MonoBehaviour {
     public int timerMax; //Maximum amount for the timer.
     private int timer; //A timer to randomize when the object starts lifting off.
 
+    //Variables for playing sound.
+    private AudioSource liftOffSound; //Contains the sound to play when lifting off.
+    public AudioClip[] soundClips;
+    private bool soundPlaying = false; //Boolean to keep track of wether the lift off sound is already playing.
+
     private void Start()
     {
         timer = Random.Range(timerMin, timerMax); //Set the timer to a random number between 10 and 500.
+        liftOffSound = (AudioSource)GetComponent(typeof(AudioSource));
     }
 
     void Update ()
@@ -37,7 +43,15 @@ public class LiftOff : MonoBehaviour {
         timer -= 1; //Subracts 1 from the timer varaible each frame.
         if (timer <= 0) //If the time raches zero
         {
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + rotateSpeed, transform.eulerAngles.z); //Start rotating in the y direction by an amount of degrees specified by the rotateSpeed variable
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + rotateSpeed, transform.eulerAngles.z); //Start rotating in the y direction by an amount of degrees specified by the rotateSpeed variable.
+            if (soundPlaying == false) //if the sound is not already playing
+            {
+                AudioClip randomClip = soundClips [Random.Range(0, soundClips.Length)];
+                liftOffSound.clip = randomClip;
+                liftOffSound.Play(); //Play the lift off sound.
+                soundPlaying = true; //Set the sound playing boolean to true.
+            }
+
             if (rotateSpeed <= maxRotateSpeed) //If the rotate speed is below 50 
             {
                 liftOffSpeed = rotateSpeed * liftOffSpeedModifier; //set the liftoff speed to the rotateSpeed * the liftOffSpeedModifier.
@@ -58,6 +72,7 @@ public class LiftOff : MonoBehaviour {
             transform.position = Vector3.MoveTowards(transform.position, target.position, step); //Move towards the target
             if (transform.position == target.position) //If the target is reached
             {
+                liftOffSound.Stop(); //stop the lift off sound.
                 Destroy(this.gameObject); //DIE
             }
         }
