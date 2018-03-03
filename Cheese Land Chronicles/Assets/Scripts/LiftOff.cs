@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LiftOff : MonoBehaviour {
-    //Variables for controllin initial lift off.
+    //Variables for controlling initial lift off.
     public float rotateSpeed; //Sets the base rotate speed of the object. This value increases over time by the amount specified in the rotateSpeedMultiplier.
     public float rotateSpeedModifier; //Determines by what factor the rotateSpeed increases per frame.
     private float liftOffSpeed; //Sets the speed at which the object lifts off from the ground. Is determined by the rotatespeed.
