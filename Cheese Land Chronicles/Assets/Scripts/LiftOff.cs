@@ -32,14 +32,20 @@ public class LiftOff : Enemy {
     private bool soundPlaying = false; //Boolean to keep track of wether the lift off sound is already playing.
     public float attackRadius;
     private bool inRange;
+    public bool isActive = false;
 
     public PlayerHealth playerHealth;
     private bool takenDamage;
+    public int damage;
 
     private void Start()
     {
         timer = Random.Range(timerMin, timerMax); //Set the timer to a random number between 10 and 500.
         liftOffSound = (AudioSource)GetComponent(typeof(AudioSource));
+        if (target == null)
+        {
+            target = GameObject.Find("FPSController").transform;
+        }
     }
 
     void Update ()
@@ -51,7 +57,7 @@ public class LiftOff : Enemy {
         
         //Lifting off
         timer -= 1; //Subracts 1 from the timer varaible each frame.
-        if (timer <= 0 && inRange == true) //If the time reaches zero
+        if (timer <= 0 && inRange == true && isActive) //If the time reaches zero
         {
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + rotateSpeed, transform.eulerAngles.z); //Start rotating in the y direction by an amount of degrees specified by the rotateSpeed variable.
 
@@ -81,17 +87,22 @@ public class LiftOff : Enemy {
         if (heightIncrease >= maxHeight) //if the rotateSpeed is at or above its maximum
         {
             transform.position = Vector3.MoveTowards(transform.position, target.position, step); //Move towards the target
-            if (transform.position == target.position) //If the target is reached
+            if (Vector3.Distance(transform.position, target.position) <= 2) //If the target is reached
             {
                 liftOffSound.Stop(); //stop the lift off sound.
                 soundPlaying = false;
                 if (playerHealth != null && takenDamage == false)
                 {
-                    playerHealth.TakeDamage(10);
+                    playerHealth.TakeDamage(damage);
                     takenDamage = true;
                 }
                 Destroy(this.gameObject); //DIE
             }
         }
 	}
+
+    public void Activate()
+    {
+        isActive = true;
+    }
 }

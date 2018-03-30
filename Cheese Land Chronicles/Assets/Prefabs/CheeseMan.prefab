@@ -1497,7 +1497,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1813897254413706}
   m_LocalRotation: {x: -0, y: -0.9961399, z: -0, w: 0.08778101}
-  m_LocalPosition: {x: 276.6, y: 204, z: 209.3}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4551213298495880}
@@ -1720,8 +1720,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxEnemyHealth: 50
   currentEnemyHealth: 50
-  target: {fileID: 0}
-  playerHealth: {fileID: 0}
+  target: {fileID: 1823965960735802, guid: f4b2a2e0411d0f14ab065842d1d76fb3, type: 2}
+  attackRadius: 80
+  damage: 5
+  playerHealth: {fileID: 114179121262059048, guid: f4b2a2e0411d0f14ab065842d1d76fb3,
+    type: 2}
+  isActive: 0
 --- !u!137 &137322209104431360
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -1830,11 +1834,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 1200
-  m_StoppingDistance: 5
+  m_StoppingDistance: 4
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

@@ -6,8 +6,8 @@ public class AltarActivate : MonoBehaviour {
 
     private GameObject objectOnAltar;
     public GameObject door;
-    public PlayerItemSearch playerPickUpScript;
     public PlayerItemSearch playerItemSearch;
+    public bool doorOn = false;
     public string keyTag;
 
     // Use this for initialization
@@ -19,18 +19,34 @@ public class AltarActivate : MonoBehaviour {
     {
         if (other.tag == keyTag)
         {
-            if (playerItemSearch.objectInHand != null && playerItemSearch.objectInHand == other)
+            if (playerItemSearch.objectInHand != null)
             {
                 playerItemSearch.DropItem();
                 ((Rigidbody)other.GetComponent(typeof(Rigidbody))).isKinematic = true;
                 other.transform.position = transform.position + new Vector3(0, 2, 0);
-                door.SetActive(true);
+                other.gameObject.layer = 0;
+                if (doorOn == true)
+                {
+                    door.SetActive(true);
+                }
+                else if (doorOn == false)
+                {
+                    door.SetActive(false);
+                }
             }
             else if (playerItemSearch.objectInHand == null)
             {
                 ((Rigidbody)other.GetComponent(typeof(Rigidbody))).isKinematic = true;
                 other.transform.position = transform.position + new Vector3(0, 2, 0);
-                door.SetActive(true);
+                other.gameObject.layer = 0;
+                if (doorOn == true)
+                {
+                    door.SetActive(true);
+                }
+                else if (doorOn == false)
+                {
+                    door.SetActive(false);
+                }
             }
         }
     }

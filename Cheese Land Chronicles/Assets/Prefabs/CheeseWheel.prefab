@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 95898248905461830}
   - component: {fileID: 82880630961241276}
   - component: {fileID: 114111433953441290}
+  - component: {fileID: 54854676501473638}
   m_Layer: 8
   m_Name: CheeseWheel
   m_TagString: Enemy
@@ -67,7 +68,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1030750982924678}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 267.3, y: 204.2, z: 225.8}
+  m_LocalPosition: {x: 30.02772, y: 0.5, z: -28.93078}
   m_LocalScale: {x: 30, y: 30, z: 30}
   m_Children:
   - {fileID: 4242258752671746}
@@ -115,6 +116,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1319727229688562}
   m_Mesh: {fileID: 4300000, guid: 681bc309a1317454ba3f2daba3238902, type: 3}
+--- !u!54 &54854676501473638
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1030750982924678}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!64 &64103821859217578
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -125,7 +141,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 681bc309a1317454ba3f2daba3238902, type: 3}
@@ -138,15 +154,15 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_audioClip: {fileID: 8300000, guid: e5edc41f1b9e30f4d9d0a5f62718628d, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.453
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 100
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -240,17 +256,20 @@ MonoBehaviour:
   maxEnemyHealth: 20
   currentEnemyHealth: 20
   rotateSpeed: 0.5
-  rotateSpeedModifier: 1.01
-  liftOffSpeedModifier: 0.5
-  minRotateSpeed: 10
+  rotateSpeedModifier: 1.008
+  liftOffSpeedModifier: 0.3
+  minRotateSpeed: 2
   maxRotateSpeed: 30
-  target: {fileID: 0}
+  target: {fileID: 4567984613116480, guid: f4b2a2e0411d0f14ab065842d1d76fb3, type: 2}
   speed: 60
   maxHeight: 20
   timerMin: 1
-  timerMax: 10
+  timerMax: 2
   soundClips:
   - {fileID: 8300000, guid: e5edc41f1b9e30f4d9d0a5f62718628d, type: 3}
   - {fileID: 8300000, guid: dc08eb8733bf85b468a8aedefd912809, type: 3}
-  attackRadius: 50
-  playerHealth: {fileID: 0}
+  attackRadius: 80
+  isActive: 0
+  playerHealth: {fileID: 114179121262059048, guid: f4b2a2e0411d0f14ab065842d1d76fb3,
+    type: 2}
+  damage: 10
